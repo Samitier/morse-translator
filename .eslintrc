@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:vue/recommended",
+    "prettier/vue"
+  ],
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser"
+  },
+  "rules": {
+    "vue/valid-template-root": "off",
+    "vue/no-multiple-template-root": "off"
+  },
+  "ignorePatterns": ["dist/**", "node_modules/**", "vite.config.js"]
+}

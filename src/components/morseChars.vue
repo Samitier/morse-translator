@@ -43,12 +43,12 @@ export default defineComponent({
 
 .isSmall.dot,
 .isSmall.dash {
-  width: 0.3rem;
-  height: 0.3rem;
-  margin: 0.1rem;
-  border-radius: 0.3rem;
+  width: 6px;
+  height: 6px;
+  margin: 2px;
+  border-radius: 6px;
 }
 .isSmall.dash {
-  width: 0.6rem;
+  width: 12px;
 }
 </style>

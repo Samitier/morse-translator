@@ -2,7 +2,7 @@ import { MorseChar } from '../services/morse/domain/morseChars'
 
 export const state = {
   sentence: 'Lorem ipsum dolor sit amet',
-  currentWord: 'WORL',
+  currentWord: 'WOR',
   morseChars: [] as MorseChar[]
 }
 

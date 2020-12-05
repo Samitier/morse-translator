@@ -4,6 +4,9 @@
       v-for="(morseChars, letter) in abecedary"
       :key="letter"
       class="morseChars"
+      :class="{
+        suggested: filteredLetters.includes(letter)
+      }"
     >
       <div class="letter" v-text="letter" />
       <morse-chars :morse-chars="morseChars" />
@@ -12,28 +15,36 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
+import store from '../store'
 import MorseChars from './morseChars.vue'
 import { abecedary } from '/@/services/morse/domain/abecedary'
 
 export default defineComponent({
   components: { MorseChars },
   setup() {
-    return { abecedary }
+    const filteredLetters = computed(() => store.getters.filteredLetters)
+    return { abecedary, filteredLetters }
   }
 })
 </script>
 
 <style scoped>
-.letter {
-  color: var(--color2);
-  text-transform: uppercase;
-  width: 1rem;
-}
-
 .morseChars {
   display: flex;
   align-items: center;
   margin: 0.2rem;
+  opacity: 0.1;
+  transition: opacity 0.3s;
+}
+
+.morseChars.suggested {
+  opacity: 1;
+}
+
+.letter {
+  color: var(--color2);
+  text-transform: uppercase;
+  width: 1rem;
 }
 </style>

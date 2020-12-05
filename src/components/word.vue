@@ -1,7 +1,12 @@
 <template>
-  <div class="card">
-    <div class="word">{{ word }}</div>
-    <morse-chars :morse-chars="morseChars" is-small />
+  <div v-if="word || morseChars.length" class="card">
+    <div v-if="word" class="word">{{ word }}</div>
+    <div class="relative">
+      <div v-if="guessedWord" class="guessedWord">{{ guessedWord }}</div>
+      <div :class="{ morseChars: word && guessedWord }">
+        <morse-chars :morse-chars="morseChars" is-small />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -13,8 +18,14 @@ import store from '/@/store'
 export default defineComponent({
   components: { MorseChars },
   setup() {
+    let word = computed(() => store.state.currentWord)
+    let guessedWord = computed(() =>
+      store.state.guessedWord.replace(word.value, '')
+    )
+
     return {
-      word: computed(() => store.state.currentWord),
+      word,
+      guessedWord,
       morseChars: computed(() => store.state.morseChars)
     }
   }
@@ -22,15 +33,33 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.word {
+.word,
+.guessedWord {
   font-size: 2.3rem;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+.guessedWord {
+  opacity: 0.3;
+}
+.relative {
+  position: relative;
+}
+.morseChars {
+  bottom: -0.7rem;
+  left: 0;
+  position: absolute;
+  min-width: 10rem;
 }
 .card {
   margin: 2rem 0;
+  padding: 1.5rem;
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
+  min-width: 5rem;
+  min-height: 3rem;
 }
 .card::after {
   position: absolute;

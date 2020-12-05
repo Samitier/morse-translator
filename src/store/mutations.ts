@@ -4,7 +4,8 @@ import { State } from './state'
 
 export enum Mutations {
   addMorseChar = 'addMorseChar',
-  addLetter = 'addLetter'
+  addLetter = 'addLetter',
+  setGuessedWord = 'setGuessedWord'
 }
 
 export const mutations: MutationTree<State> = {
@@ -14,5 +15,8 @@ export const mutations: MutationTree<State> = {
   [Mutations.addLetter](state, letter: string) {
     state.currentWord += letter
     state.morseChars.splice(0, state.morseChars.length)
+  },
+  [Mutations.setGuessedWord](state, guessedWord: string) {
+    state.guessedWord = guessedWord
   }
 }

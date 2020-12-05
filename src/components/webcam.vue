@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="webcam">
     <div ref="webcamContainer" class="webcamContainer" />
     <timer :size="size" />
   </div>
@@ -35,6 +35,10 @@ export default defineComponent({
 </script>
 
 <style>
+.webcam {
+  position: relative;
+  margin: 1rem 0;
+}
 .webcamContainer {
   height: 200px;
   width: 200px;

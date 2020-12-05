@@ -49,6 +49,9 @@ a {
 
 /* ///// UTILS ///// */
 
+.relative {
+  position: relative;
+}
 .card {
   padding: 1rem;
   background: var(--color3);

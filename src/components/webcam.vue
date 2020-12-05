@@ -1,12 +1,17 @@
 <template>
-  <div ref="webcamContainer" class="webcamContainer" />
+  <div class="relative">
+    <div ref="webcamContainer" class="webcamContainer" />
+    <timer :size="size" />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { Webcam } from '@teachablemachine/image'
+import Timer from './timer.vue'
 
 export default defineComponent({
+  components: { Timer },
   setup() {
     const size = 200
     const webcamContainer = ref<HTMLElement>()
@@ -24,14 +29,13 @@ export default defineComponent({
       window.requestAnimationFrame(updateCamera)
     }
 
-    return { webcamContainer }
+    return { size, webcamContainer }
   }
 })
 </script>
 
 <style>
 .webcamContainer {
-  border: 4px solid var(--color3);
   height: 200px;
   width: 200px;
   overflow: hidden;

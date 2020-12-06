@@ -18,7 +18,7 @@
 import { computed, defineComponent } from 'vue'
 import store from '../store'
 import MorseChars from './morseChars.vue'
-import { abecedary } from '/@/services/morse/domain/abecedary'
+import { abecedary } from '/@/services/morse/abecedary'
 
 export default defineComponent({
   components: { MorseChars },

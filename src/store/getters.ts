@@ -1,5 +1,5 @@
 import { GetterTree } from 'vuex'
-import { abecedary } from '../services/morse/domain/abecedary'
+import { abecedary } from '../services/morse/abecedary'
 import { State } from './state'
 
 export const getters: GetterTree<State, State> = {

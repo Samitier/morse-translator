@@ -1,5 +1,5 @@
 import { MutationTree } from 'vuex'
-import { MorseChar } from '../services/morse/domain/morseChars'
+import { MorseChar } from '../services/morse/morseChars'
 import { State } from './state'
 
 export enum Mutations {

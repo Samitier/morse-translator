@@ -16,7 +16,7 @@ import { defineComponent } from 'vue'
 import MorseChars from './morseChars.vue'
 import store from '/@/store'
 import { Actions } from '../store/actions'
-import { dash, dot } from '/@/services/morse/domain/morseChars'
+import { dash, dot } from '/@/services/morse/morseChars'
 
 export default defineComponent({
   components: { MorseChars },

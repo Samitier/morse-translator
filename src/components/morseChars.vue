@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { dash, dot } from '/@/services/morse/domain/morseChars'
+import { dash, dot } from '/@/services/morse/morseChars'
 
 export default defineComponent({
   props: {

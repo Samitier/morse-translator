@@ -1,6 +1,6 @@
 import { ActionTree } from 'vuex'
 import { guessWord } from '../services/guessWord/guessWord'
-import { MorseChar } from '../services/morse/domain/morseChars'
+import { MorseChar } from '../services/morse/morseChars'
 import { Mutations } from './mutations'
 import { State } from './state'
 

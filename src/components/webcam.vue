@@ -6,28 +6,31 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
-import { Webcam } from '@teachablemachine/image'
+import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
+import { loadWebcamPredictionModel } from '../services/predictionModel/predictionModel'
+import store from '../store'
+import { Actions } from '../store/actions'
 import Timer from './timer.vue'
 
 export default defineComponent({
   components: { Timer },
   setup() {
     const size = 200
+    const predictionMs = 800
     const webcamContainer = ref<HTMLElement>()
-    const webcam = new Webcam(size, size, true)
+    let interval = 0
 
-    onMounted(async () => {
-      await webcam.setup()
-      await webcam.play()
-      webcamContainer.value?.appendChild(webcam.canvas)
-      updateCamera()
+    onMounted(() => {
+      if (webcamContainer.value) {
+        loadWebcamPredictionModel(size, webcamContainer.value)
+      }
+      interval = window.setInterval(
+        () => store.dispatch(Actions.predictNextChar),
+        predictionMs
+      )
     })
 
-    function updateCamera() {
-      webcam.update() // update the webcam frame
-      window.requestAnimationFrame(updateCamera)
-    }
+    onUnmounted(() => clearInterval(interval))
 
     return { size, webcamContainer }
   }

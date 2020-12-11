@@ -6,7 +6,8 @@ export enum Mutations {
   addMorseChar = 'addMorseChar',
   addLetter = 'addLetter',
   setCurrentWord = 'setCurrentWord',
-  setGuessedWord = 'setGuessedWord'
+  setGuessedWord = 'setGuessedWord',
+  addWordToSentence = 'addWordToSentence'
 }
 
 export const mutations: MutationTree<State> = {
@@ -22,5 +23,8 @@ export const mutations: MutationTree<State> = {
   },
   [Mutations.setGuessedWord](state, guessedWord: string) {
     state.guessedWord = guessedWord
+  },
+  [Mutations.addWordToSentence](state, word: string) {
+    state.sentence += ' ' + word
   }
 }

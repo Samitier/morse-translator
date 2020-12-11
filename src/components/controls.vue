@@ -8,6 +8,7 @@
       ✋🏻
       <morse-chars :morse-chars="[dash]" />
     </div>
+    <div @click="addDash">👍🏻 ⬆️</div>
   </div>
 </template>
 

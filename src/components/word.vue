@@ -1,5 +1,5 @@
 <template>
-  <div v-if="word || morseChars.length" class="card">
+  <div class="card">
     <div v-if="word" class="word">{{ word }}</div>
     <div class="relative">
       <div v-if="guessedWord" class="guessedWord">{{ guessedWord }}</div>
@@ -59,7 +59,7 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
   min-width: 5rem;
-  min-height: 3rem;
+  min-height: 5rem;
 }
 .card::after {
   position: absolute;

@@ -1,5 +1,13 @@
 <template>
-  <div class="sentence card" v-text="sentence" />
+  <div v-if="sentence" class="sentence card">
+    <b>You said:</b> {{ sentence }}
+  </div>
+  <div v-else class="intro card">
+    Welcome! Try to write a sentence using the controls and the abecedary
+    on your right.
+    <br /><br />
+    Your computer will try to understand what you are saying!
+  </div>
 </template>
 
 <script lang="ts">
@@ -19,5 +27,9 @@ export default defineComponent({
 .sentence {
   font-size: 1.3rem;
   display: inline-block;
+}
+.intro {
+  font-size: 1.2rem;
+  text-align: center;
 }
 </style>

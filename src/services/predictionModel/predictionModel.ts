@@ -10,7 +10,7 @@ type Prediction = {
   probability: number
 }
 
-type ClassName = 'dash' | 'dot' | 'nothing'
+type ClassName = 'dash' | 'dot' | 'ok' | 'nothing'
 
 export async function loadWebcamPredictionModel(
   size: number,

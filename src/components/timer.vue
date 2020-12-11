@@ -29,7 +29,7 @@ export default defineComponent({
     }
   },
   setup() {
-    const totalMs = 3000
+    const totalMs = 2000
     let isTimerStarted = ref(false)
     let timeout: number
 
@@ -70,8 +70,7 @@ svg {
   stroke-dashoffset: 0px;
   stroke-width: 1rem;
   stroke: white;
-  fill: none;
-  animation: countdown 3s linear forwards;
+  animation: countdown 2s linear forwards;
 }
 
 @keyframes countdown {

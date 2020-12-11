@@ -2,6 +2,9 @@
   <div class="webcam">
     <div ref="webcamContainer" class="webcamContainer" />
     <timer :size="size" />
+    <div v-if="isLoading" class="loading-message">
+      Loading model, please wait.
+    </div>
   </div>
 </template>
 
@@ -18,11 +21,13 @@ export default defineComponent({
     const size = 200
     const predictionMs = 800
     const webcamContainer = ref<HTMLElement>()
+    const isLoading = ref(true)
     let interval = 0
 
-    onMounted(() => {
+    onMounted(async () => {
       if (webcamContainer.value) {
-        loadWebcamPredictionModel(size, webcamContainer.value)
+        await loadWebcamPredictionModel(size, webcamContainer.value)
+        isLoading.value = false
       }
       interval = window.setInterval(
         () => store.dispatch(Actions.predictNextChar),
@@ -32,7 +37,7 @@ export default defineComponent({
 
     onUnmounted(() => clearInterval(interval))
 
-    return { size, webcamContainer }
+    return { size, webcamContainer, isLoading }
   }
 })
 </script>
@@ -47,5 +52,8 @@ export default defineComponent({
   width: 200px;
   overflow: hidden;
   border-radius: 50%;
+}
+.loading-message {
+  margin-top: 1rem;
 }
 </style>

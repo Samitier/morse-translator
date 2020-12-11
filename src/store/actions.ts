@@ -9,7 +9,8 @@ export enum Actions {
   addMorseChar = 'addMorseChar',
   autocompleteLetter = 'autocompleteLetter',
   guessWord = 'guessWord',
-  predictNextChar = 'predictNextChar'
+  predictNextChar = 'predictNextChar',
+  addWordToSentence = 'addWordToSentence'
 }
 
 export const actions: ActionTree<State, State> = {
@@ -28,6 +29,12 @@ export const actions: ActionTree<State, State> = {
     const prediction = await getPrediction()
     if (prediction === 'dash') dispatch(Actions.addMorseChar, dash)
     else if (prediction === 'dot') dispatch(Actions.addMorseChar, dot)
+    else if (prediction === 'ok') dispatch(Actions.addWordToSentence)
+  },
+  async [Actions.addWordToSentence]({ commit, state }) {
+    commit(Mutations.addWordToSentence, state.guessedWord)
+    commit(Mutations.setCurrentWord, '')
+    commit(Mutations.setGuessedWord, '')
   },
   async [Actions.guessWord]({ commit, state }) {
     const words = await guessWord(state.currentWord)

@@ -10,7 +10,8 @@ export enum Actions {
   autocompleteLetter = 'autocompleteLetter',
   guessWord = 'guessWord',
   predictNextChar = 'predictNextChar',
-  addWordToSentence = 'addWordToSentence'
+  addWordToSentence = 'addWordToSentence',
+  undoLastLetter = 'undoLastLetter'
 }
 
 export const actions: ActionTree<State, State> = {
@@ -38,10 +39,22 @@ export const actions: ActionTree<State, State> = {
   },
   async [Actions.guessWord]({ commit, state }) {
     const words = await guessWord(state.currentWord)
-    const guessedWord = words[0] ?? ''
+    let guessedWord = words[0] ?? ''
+    if (words.includes(state.currentWord)) {
+      guessedWord = state.currentWord
+    }
     if (!guessedWord.includes(state.currentWord)) {
       commit(Mutations.setCurrentWord, guessedWord)
     }
     commit(Mutations.setGuessedWord, guessedWord)
+  },
+  [Actions.undoLastLetter]({ commit, dispatch, state }) {
+    const { currentWord } = state
+    if (!currentWord.length) return
+    commit(
+      Mutations.setCurrentWord,
+      currentWord.substring(0, currentWord.length - 1)
+    )
+    dispatch(Actions.guessWord)
   }
 }

@@ -19,7 +19,7 @@ export default defineComponent({
   components: { Timer },
   setup() {
     const size = 200
-    const predictionMs = 800
+    const predictionMs = 850
     const webcamContainer = ref<HTMLElement>()
     const isLoading = ref(true)
     let interval = 0

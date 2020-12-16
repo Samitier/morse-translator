@@ -3,8 +3,8 @@
     <b>You said:</b> {{ sentence }}
   </div>
   <div v-else class="intro card">
-    Welcome! Try to write a sentence using the controls and the abecedary
-    on your right.
+    Hello! Try to write some words in morse with the hand gestures at the
+    bottom corner.
     <br /><br />
     Your computer will try to understand what you are saying!
   </div>
